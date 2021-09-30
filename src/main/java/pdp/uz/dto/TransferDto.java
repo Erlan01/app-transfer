@@ -7,8 +7,10 @@ import lombok.Setter;
 @Getter
 public class TransferDto {
 
-    private Long fromCard;
-    private Long toCard;
+    private Long fromCardId;
+
+    private Long toCardId;
+
     private Double amount;
 
 }

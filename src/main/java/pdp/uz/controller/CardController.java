@@ -3,8 +3,9 @@ package pdp.uz.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.pdp.dto.CardDto;
-import uz.pdp.service.CardService;
+import pdp.uz.dto.CardDto;
+import pdp.uz.service.CardService;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,12 +16,12 @@ public class CardController {
 
     private final CardService cardService;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody CardDto dto, HttpServletRequest request) {
         return cardService.add(dto, request);
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<?> get(HttpServletRequest request) {
         return cardService.get(request);
     }

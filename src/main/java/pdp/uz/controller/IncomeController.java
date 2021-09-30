@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uz.pdp.service.IncomeService;
+import pdp.uz.service.IncomeService;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,10 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/income")
 public class IncomeController {
 
-    private  final IncomeService service;
+    private final IncomeService incomeService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     ResponseEntity<?> get(@PathVariable Long id, HttpServletRequest request){
-        return service.get(id,request);
+        return incomeService.get(id,request);
     }
 }

@@ -6,33 +6,39 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
+@Entity(name = "outcome")
 public class Outcome {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "form_card_id")
     private Card fromCard;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "to_card_id")
     private Card toCard;
 
-    @Column(nullable = false)
+
+    @Column(name = "amount", nullable = false)
     private Double amount;
 
-    @Column(nullable = false)
-    private LocalDateTime date = LocalDateTime.now();
 
-    @Column(nullable = false)
-    private Double commisionAmount;
+    @Column(columnDefinition = "timestamp default now()")
+    private Timestamp date = Timestamp.valueOf(LocalDateTime.now());
+
+
+    @Column(name = "commission_amount", nullable = false)
+    private Double commissionAmount;
 }

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uz.pdp.dto.TransferDto;
-import uz.pdp.service.TransferService;
+import pdp.uz.dto.TransferDto;
+import pdp.uz.service.TransferService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +19,7 @@ public class TransferController {
 
     private final TransferService service;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<?> transfer(@RequestBody TransferDto dto, HttpServletRequest request) {
         return service.transfer(dto, request);
     }

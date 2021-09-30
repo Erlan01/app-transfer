@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uz.pdp.service.OutcomeService;
+import pdp.uz.service.OutcomeService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/outcome")
 public class OutcomeController {
 
-    private  final OutcomeService service;
+    private final OutcomeService outcomeService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     ResponseEntity<?> get(@PathVariable Long id, HttpServletRequest request){
-        return service.get(id,request);
+        return outcomeService.get(id,request);
     }
 }

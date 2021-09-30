@@ -1,19 +1,17 @@
 package pdp.uz.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pdp.uz.dto.LoginDto;
-import pdp.uz.securtiy.JWTProvider;
-import pdp.uz.service.AuthService;
+import pdp.uz.securtiy.JwtProvider;
+
 
 
 @RestController
@@ -21,11 +19,7 @@ import pdp.uz.service.AuthService;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthService authService;
-
-    private final JWTProvider jwtProvider;
-
-    private final PasswordEncoder passwordEncoder;
+    private final JwtProvider jwtProvider;
 
     private final AuthenticationManager authenticationManager;
 
