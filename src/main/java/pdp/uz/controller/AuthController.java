@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pdp.uz.dto.LoginDto;
 import pdp.uz.securtiy.JWTProvider;
 import pdp.uz.service.AuthService;
-import uz.pdp.dto.LoginDto;
-import uz.pdp.securtiy.JWTProvider;
-import uz.pdp.service.AuthService;
 
 
 @RestController
