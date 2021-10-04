@@ -1,6 +1,7 @@
 package pdp.uz.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pdp.uz.domain.Card;
@@ -15,17 +16,17 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CardServiceImpl implements CardService {
 
-private final CardRepo cardRepo;
+    @Autowired
+    CardRepo cardRepo;
 
 
     @Override
     public ResponseEntity<?> add(CardDto dto, HttpServletRequest request) {
-        Card card=new Card();
+        Card card = new Card();
         card.setBalance(dto.getBalance());
-        card.setExpireDate(new Date(System.currentTimeMillis()+(518400000*60L)));
+        card.setExpireDate(new Date(System.currentTimeMillis() + (518400000 * 60L)));
         card.setNumber(dto.getNumber());
         card.setUsername(Utils.getUsername(request));
         cardRepo.save(card);
@@ -36,9 +37,9 @@ private final CardRepo cardRepo;
     public ResponseEntity<?> get(HttpServletRequest request) {
         String username = Utils.getUsername(request);
         List<Card> cardList = cardRepo.findAllByUsername(username);
-        if (cardList.isEmpty())
+        if (cardList.isEmpty()) {
             return ResponseEntity.status(404).body("Card not found");
+        }
         return ResponseEntity.ok(cardList);
     }
-
 }

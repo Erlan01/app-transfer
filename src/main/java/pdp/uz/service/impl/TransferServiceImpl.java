@@ -1,6 +1,7 @@
 package pdp.uz.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pdp.uz.domain.Card;
@@ -17,15 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class TransferServiceImpl implements TransferService {
 
-
-    private final IncomeRepo incomeRepo;
-
-    private final OutcomeRepo outcomeRepo;
-
-    private final CardRepo cardRepo;
+    @Autowired
+    IncomeRepo incomeRepo;
+    @Autowired
+    OutcomeRepo outcomeRepo;
+    @Autowired
+    CardRepo cardRepo;
 
     @Override
     public ResponseEntity<?> transfer(TransferDto dto, HttpServletRequest request) {
@@ -45,7 +45,7 @@ public class TransferServiceImpl implements TransferService {
         if (amount > fromCard.getBalance()) {
             ResponseEntity.status(409).body("You don't have enough funds in your account");
         }
-        Double commissionAndAmount = (amount * 2.0);
+        Double commissionAndAmount = (amount * 1.0);
         fromCard.setBalance((fromCard.getBalance() - commissionAndAmount));
         toCard.setBalance((toCard.getBalance() + amount));
 
@@ -65,6 +65,6 @@ public class TransferServiceImpl implements TransferService {
         outcome.setCommissionAmount(commissionAndAmount);
         outcomeRepo.save(outcome);
 
-        return ResponseEntity.ok("The transfer was completed successfully");
+        return ResponseEntity.ok("Successfully");
     }
 }

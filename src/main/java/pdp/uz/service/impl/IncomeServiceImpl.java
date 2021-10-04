@@ -1,6 +1,7 @@
 package pdp.uz.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pdp.uz.domain.Card;
@@ -14,12 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class IncomeServiceImpl implements IncomeService {
 
-    private final IncomeRepo incomeRepo;
-
-    private final CardRepo cardRepo;
+    @Autowired
+    IncomeRepo incomeRepo;
+    @Autowired
+    CardRepo cardRepo;
 
     @Override
     public ResponseEntity<?> get(Long id, HttpServletRequest request) {

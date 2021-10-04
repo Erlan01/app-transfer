@@ -1,7 +1,7 @@
 package pdp.uz.service;
 
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,14 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
 
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<User> userList=new ArrayList<>(
+        List<User> userList = new ArrayList<>(
                 Arrays.asList(
                         new User("admin",passwordEncoder.encode("111"),new ArrayList<>()),
                         new User("operator",passwordEncoder.encode("222"),new ArrayList<>()),
